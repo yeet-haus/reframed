@@ -11,6 +11,15 @@ export const app = new Frog({
 
 app.frame('/', c => {
   return c.res({
+    image: '/nipple',
+  });
+});
+
+app.image('/nipple', c => {
+  return c.res({
+    headers: {
+      'Cache-Control': 'max-age=0',
+    },
     image: (
       <Box grow alignHorizontal="center" backgroundColor="nipple" padding="32">
         <VStack gap="4">
