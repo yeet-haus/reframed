@@ -24,4 +24,5 @@ yarn-error.log*
 public/frog
 
 .env
-.toml
+*.toml
+wrangler.toml
