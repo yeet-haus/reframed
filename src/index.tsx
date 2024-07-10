@@ -12,15 +12,10 @@ export const app = new Frog({
 app.frame('/', c => {
   return c.res({
     image: (
-      <Box
-        grow
-        alignHorizontal="center"
-        backgroundColor="background"
-        padding="32"
-      >
+      <Box grow alignHorizontal="center" backgroundColor="nipple" padding="32">
         <VStack gap="4">
-          <Heading>FrogUI 🐸</Heading>
-          <Text color="text" size="20">
+          <Heading>FrogUI</Heading>
+          <Text color="angel" size="20">
             Build consistent frame experiences
           </Text>
         </VStack>
