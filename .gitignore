@@ -26,3 +26,5 @@ public/frog
 .env
 *.toml
 wrangler.toml
+.dev
+.dev.vars

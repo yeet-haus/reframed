@@ -5,12 +5,27 @@ import { Box, Heading, Text, VStack, vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
 
-import { formatEther, getAddress } from 'viem';
+// import { formatEther, getAddress } from 'viem';
+
+// import {
+//   addParsedContent,
+//   formatShortDateTimeFromSeconds,
+//   postData,
+// } from '../utils/helpers.js';
+// import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
+
+// import { Header } from '../components/Header.js';
+// import { Footer } from '../components/Footer.js';
 
 export const app = new Frog({
   title: 'YEET',
+  // browserLocation: 'https://app.yeet.haus/',
   assetsPath: '/',
   ui: { vars },
+  initialState: {
+    minTribute: '0',
+    shamanAddress: '',
+  },
 });
 
 app.frame('/', c => {
