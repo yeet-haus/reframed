@@ -9,8 +9,10 @@
     "wrangler:static": "cp -r ./node_modules/frog/_lib/ui/.frog ./public/frog"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "frog": "^0.13.1",
-    "hono": "^4.4.12"
+    "hono": "^4.4.12",
+    "viem": "^2.17.3"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "latest",

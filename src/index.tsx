@@ -1,7 +1,11 @@
+import 'dotenv/config';
+
 import { Frog } from 'frog';
 import { Box, Heading, Text, VStack, vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
+
+// import { formatEther, getAddress } from 'viem';
 
 export const app = new Frog({
   title: 'YEET',
