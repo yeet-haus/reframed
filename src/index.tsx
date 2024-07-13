@@ -1,5 +1,3 @@
-import 'dotenv/config';
-
 import { Frog } from 'frog';
 import { Box, Heading, Text, VStack, vars } from './ui.js';
 import { devtools } from 'frog/dev';
