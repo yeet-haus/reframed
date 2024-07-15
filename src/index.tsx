@@ -2,17 +2,7 @@
 import * as process from 'node:process';
 
 import { Frog } from 'frog';
-import {
-  Box,
-  Columns,
-  Column,
-  Rows,
-  Row,
-  Heading,
-  Text,
-  VStack,
-  vars,
-} from './ui.js';
+import { vars } from './ui.js';
 import { devtools } from 'frog/dev';
 import { serveStatic } from 'frog/serve-static';
 
@@ -26,8 +16,7 @@ import { serveStatic } from 'frog/serve-static';
 
 import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
 
-import { Header } from '../components/Header.js';
-import { Footer } from '../components/Footer.js';
+import { ErrorView } from '../components/ErrorView.js';
 
 export const app = new Frog({
   title: 'YEET',
@@ -69,66 +58,7 @@ app.image('/yeeter-not-found', c => {
     headers: {
       'Cache-Control': 'max-age=0',
     },
-    image: (
-      <Rows grow>
-        <Row
-          backgroundColor="death"
-          color="nipple"
-          textTransform="uppercase"
-          borderTopColor={'angel'}
-          borderTopWidth={'4'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Header />
-        </Row>
-        <Row
-          backgroundColor="nipple"
-          borderTopColor={'angel'}
-          borderTopWidth={'2'}
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'2'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="3/5"
-        >
-          <Columns grow>
-            <Column
-              backgroundColor="death"
-              color="angel"
-              textAlign="center"
-              textTransform="uppercase"
-              alignHorizontal="center"
-              alignVertical="center"
-              paddingRight="12"
-              paddingLeft="12"
-              width="1/1"
-            >
-              <Heading wrap="balance">Yeeter Not Found</Heading>
-            </Column>
-          </Columns>
-        </Row>
-        <Row
-          backgroundColor="death"
-          color="angel"
-          textTransform="uppercase"
-          borderRightColor={'angel'}
-          borderRightWidth={'4'}
-          borderBottomColor={'angel'}
-          borderBottomWidth={'4'}
-          borderLeftColor={'angel'}
-          borderLeftWidth={'4'}
-          height="1/5"
-        >
-          <Footer />
-        </Row>
-      </Rows>
-    ),
+    image: <ErrorView message="Yeeter Not Found" />,
   });
 });
 
