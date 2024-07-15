@@ -1,4 +1,5 @@
-// import * as process from 'node:process';
+// Frog Development
+import * as process from 'node:process';
 
 import { Frog } from 'frog';
 import { Box, Heading, Text, VStack, vars } from './ui.js';
@@ -30,7 +31,13 @@ export const app = new Frog({
 });
 
 app.frame('/', c => {
-  const graphKey = c.env.GRAPH_KEY;
+  // const graphKey = c.env.GRAPH_KEY;
+  // const graphKey = process.env.GRAPH_KEY;
+  const graphKey = c.env?.GRAPH_KEY || process.env.GRAPH_KEY;
+
+  if (!graphKey) {
+    throw new Error('GRAPH_KEY Missing');
+  }
 
   // Log the GRAPH_KEY to verify it's being read correctly
   console.log('GRAPH_KEY:', graphKey);
