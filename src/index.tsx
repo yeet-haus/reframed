@@ -21,7 +21,9 @@ import { SuccessView } from '../components/SuccessView.js';
 
 export const app = new Frog({
   title: 'YEET',
-  // browserLocation: 'https://app.yeet.haus/',
+  browserLocation: 'https://app.yeet.haus/',
+  // // Comment out origin for local development
+  origin: 'https://yeet-reframed.earth2travis.workers.dev',
   assetsPath: '/',
   ui: { vars },
   initialState: {
@@ -110,6 +112,47 @@ app.frame('/yeeter/:yeeterid', async c => {
 app.frame('/', c => {
   return c.res({
     image: '/wheres-the-yeet',
+  });
+});
+
+app.transaction('/yeet/:yeeterid/:mintribute', c => {
+  const yeeterid = c.req.param('yeeterid');
+  const mintribute = c.req.param('mintribute');
+  const shamanAddress = getAddress(yeeterid);
+  const message = 'YEET FROM FRAMES';
+
+  return c.contract({
+    abi: [
+      {
+        inputs: [{ internalType: 'string', name: 'message', type: 'string' }],
+        name: 'contributeEth',
+        outputs: [],
+        stateMutability: 'payable',
+        type: 'function',
+      },
+    ],
+    chainId: 'eip155:8453',
+    functionName: 'contributeEth',
+    value: BigInt(mintribute),
+    args: [message],
+    to: shamanAddress,
+  });
+});
+
+app.frame(`/success/:daoid`, c => {
+  const daoid = c.req.param('daoid');
+  return c.res({
+    image: '/success.c725c72095.png',
+    headers: {
+      'Content-Type': 'image/png',
+    },
+    intents: [
+      <Button.Link
+        href={`https://app.yeet.haus/#/molochV3/0x2105/${daoid.toLowerCase()}`}
+      >
+        View Project
+      </Button.Link>,
+    ],
   });
 });
 
