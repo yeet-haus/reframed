@@ -22,7 +22,6 @@ import { SuccessView } from '../components/SuccessView.js';
 export const app = new Frog({
   title: 'YEET',
   browserLocation: 'https://app.yeet.haus/',
-  // // Comment out origin for local development
   origin: 'https://yeet-reframed.earth2travis.workers.dev',
   assetsPath: '/',
   ui: { vars },
@@ -30,6 +29,12 @@ export const app = new Frog({
     minTribute: '0',
     shamanAddress: '',
   },
+});
+
+app.frame('/', c => {
+  return c.res({
+    image: '/wheres-the-yeet',
+  });
 });
 
 app.frame('/yeeter/:yeeterid', async c => {
@@ -106,12 +111,6 @@ app.frame('/yeeter/:yeeterid', async c => {
         YEET
       </Button.Transaction>,
     ],
-  });
-});
-
-app.frame('/', c => {
-  return c.res({
-    image: '/wheres-the-yeet',
   });
 });
 
