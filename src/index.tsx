@@ -62,6 +62,24 @@ app.image('/yeeter-not-found', c => {
   });
 });
 
+app.image('/yeeter-not-active', c => {
+  return c.res({
+    headers: {
+      'Cache-Control': 'max-age=0',
+    },
+    image: <ErrorView message="Yeeter Not Active" />,
+  });
+});
+
+app.image('/missing-yeeter-mission', c => {
+  return c.res({
+    headers: {
+      'Cache-Control': 'max-age=0',
+    },
+    image: <ErrorView message="Missing Yeeter Mission" />,
+  });
+});
+
 const isCloudflareWorker = typeof caches !== 'undefined';
 if (isCloudflareWorker) {
   const manifest = await import('__STATIC_CONTENT_MANIFEST');
