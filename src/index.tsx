@@ -108,24 +108,6 @@ app.frame('/yeeter/:yeeterid', async c => {
 });
 
 app.frame('/', c => {
-  // const graphKey = c.env.GRAPH_KEY;
-  // const graphKey = process.env.GRAPH_KEY;
-  const graphKey = c.env?.GRAPH_KEY || process.env.GRAPH_KEY;
-
-  if (!graphKey) {
-    throw new Error('GRAPH_KEY Missing');
-  }
-
-  // Log the GRAPH_KEY to verify it's being read correctly
-  console.log('GRAPH_KEY:', graphKey);
-
-  // Log the endpoints to verify they are working
-  console.log('Testing GRAPH_ENDPOINT:');
-  console.log(GRAPH_ENDPOINT(graphKey));
-
-  console.log('Testing DH_GRAPH_ENDPOINT:');
-  console.log(DH_GRAPH_ENDPOINT(graphKey));
-
   return c.res({
     image: '/wheres-the-yeet',
   });
