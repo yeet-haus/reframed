@@ -28,4 +28,4 @@ public/frog
 wrangler.toml
 .dev
 .dev.vars
-package.json
+# package.json
