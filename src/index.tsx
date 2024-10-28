@@ -46,6 +46,8 @@ app.frame("/yeeter/:yeeterid", async (c) => {
     throw new Error("GRAPH_KEY Missing");
   }
 
+  console.log("graphKey", graphKey);
+
   const yeetData = await postData(GRAPH_ENDPOINT(graphKey), {
     query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
   });
