@@ -1,0 +1,13 @@
+name = "yeet-reframed"
+main = "src/index.tsx"
+compatibility_date = "2024-09-23"
+compatibility_flags = [ "nodejs_compat" ]
+
+[site]
+bucket = "./public"
+
+[observability]
+enabled = true
+
+
+
