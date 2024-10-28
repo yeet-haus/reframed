@@ -24,7 +24,6 @@ yarn-error.log*
 public/frog
 
 .env
-*.toml
 .dev
 .dev.vars
 # package.json
