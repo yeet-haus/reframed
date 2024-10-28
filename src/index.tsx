@@ -1,49 +1,49 @@
 // Frog Development
-import * as process from 'node:process';
+import * as process from "node:process";
 
-import { Frog, Button } from 'frog';
-import { vars } from './ui.js';
-import { devtools } from 'frog/dev';
-import { serveStatic } from 'frog/serve-static';
+import { Frog, Button } from "frog";
+import { vars } from "./ui.js";
+import { devtools } from "frog/dev";
+import { serveStatic } from "frog/serve-static";
 
-import { formatEther, getAddress } from 'viem';
+import { formatEther, getAddress } from "viem";
 
 import {
   addParsedContent,
   formatShortDateTimeFromSeconds,
   postData,
-} from '../utils/helpers.js';
+} from "../utils/helpers.js";
 
-import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from '../utils/constants.js';
+import { DH_GRAPH_ENDPOINT, GRAPH_ENDPOINT } from "../utils/constants.js";
 
-import { ErrorView } from '../components/ErrorView.js';
-import { SuccessView } from '../components/SuccessView.js';
+import { ErrorView } from "../components/ErrorView.js";
+import { SuccessView } from "../components/SuccessView.js";
 
 export const app = new Frog({
-  title: 'YEET',
-  browserLocation: 'https://app.yeet.haus/',
-  origin: 'https://yeet-reframed.earth2travis.workers.dev',
-  assetsPath: '/',
+  title: "YEET",
+  browserLocation: "https://app.yeet.haus/",
+  origin: "https://frames.yeet.haus",
+  assetsPath: "/",
   ui: { vars },
   initialState: {
-    minTribute: '0',
-    shamanAddress: '',
+    minTribute: "0",
+    shamanAddress: "",
   },
 });
 
-app.frame('/', c => {
+app.frame("/", (c) => {
   return c.res({
-    image: '/wheres-the-yeet',
+    image: "/wheres-the-yeet",
   });
 });
 
-app.frame('/yeeter/:yeeterid', async c => {
-  const yeeterid = c.req.param('yeeterid');
+app.frame("/yeeter/:yeeterid", async (c) => {
+  const yeeterid = c.req.param("yeeterid");
 
   const graphKey = c.env?.GRAPH_KEY || process.env.GRAPH_KEY;
 
   if (!graphKey) {
-    throw new Error('GRAPH_KEY Missing');
+    throw new Error("GRAPH_KEY Missing");
   }
 
   const yeetData = await postData(GRAPH_ENDPOINT(graphKey), {
@@ -82,17 +82,17 @@ app.frame('/yeeter/:yeeterid', async c => {
   }
 
   const name = metaRes.data.records[0].dao.name;
-  const mission = meta?.missionStatement || 'No Mission';
+  const mission = meta?.missionStatement || "No Mission";
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime =
-    formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime) || 'No End';
+    formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime) || "No End";
   const goal = formatEther(yeetData.data.yeeter.goal);
   const minTribute = formatEther(yeetData.data.yeeter.minTribute);
 
   return c.res({
     action: `/success/${daoid}`,
     headers: {
-      'Cache-Control': 'max-age=0',
+      "Cache-Control": "max-age=0",
     },
     image: (
       <SuccessView
@@ -114,36 +114,36 @@ app.frame('/yeeter/:yeeterid', async c => {
   });
 });
 
-app.transaction('/yeet/:yeeterid/:mintribute', c => {
-  const yeeterid = c.req.param('yeeterid');
-  const mintribute = c.req.param('mintribute');
+app.transaction("/yeet/:yeeterid/:mintribute", (c) => {
+  const yeeterid = c.req.param("yeeterid");
+  const mintribute = c.req.param("mintribute");
   const shamanAddress = getAddress(yeeterid);
-  const message = 'YEET FROM FRAMES';
+  const message = "YEET FROM FRAMES";
 
   return c.contract({
     abi: [
       {
-        inputs: [{ internalType: 'string', name: 'message', type: 'string' }],
-        name: 'contributeEth',
+        inputs: [{ internalType: "string", name: "message", type: "string" }],
+        name: "contributeEth",
         outputs: [],
-        stateMutability: 'payable',
-        type: 'function',
+        stateMutability: "payable",
+        type: "function",
       },
     ],
-    chainId: 'eip155:8453',
-    functionName: 'contributeEth',
+    chainId: "eip155:8453",
+    functionName: "contributeEth",
     value: BigInt(mintribute),
     args: [message],
     to: shamanAddress,
   });
 });
 
-app.frame(`/success/:daoid`, c => {
-  const daoid = c.req.param('daoid');
+app.frame(`/success/:daoid`, (c) => {
+  const daoid = c.req.param("daoid");
   return c.res({
-    image: '/success.c725c72095.png',
+    image: "/success.c725c72095.png",
     headers: {
-      'Content-Type': 'image/png',
+      "Content-Type": "image/png",
     },
     intents: [
       <Button.Link
@@ -155,36 +155,36 @@ app.frame(`/success/:daoid`, c => {
   });
 });
 
-app.image('/wheres-the-yeet', c => {
+app.image("/wheres-the-yeet", (c) => {
   return c.res({
     image: <ErrorView message="Where's the Yeet?" />,
   });
 });
 
-app.image('/yeeter-not-found', c => {
+app.image("/yeeter-not-found", (c) => {
   return c.res({
     image: <ErrorView message="Yeeter Not Found" />,
   });
 });
 
-app.image('/yeeter-not-active', c => {
+app.image("/yeeter-not-active", (c) => {
   return c.res({
     image: <ErrorView message="Yeeter Not Active" />,
   });
 });
 
-app.image('/missing-yeeter-mission', c => {
+app.image("/missing-yeeter-mission", (c) => {
   return c.res({
     image: <ErrorView message="Missing Yeeter Mission" />,
   });
 });
 
-const isCloudflareWorker = typeof caches !== 'undefined';
+const isCloudflareWorker = typeof caches !== "undefined";
 if (isCloudflareWorker) {
-  const manifest = await import('__STATIC_CONTENT_MANIFEST');
-  const serveStaticOptions = { manifest, root: './' };
-  app.use('/*', serveStatic(serveStaticOptions));
-  devtools(app, { assetsPath: '/frog', serveStatic, serveStaticOptions });
+  const manifest = await import("__STATIC_CONTENT_MANIFEST");
+  const serveStaticOptions = { manifest, root: "./" };
+  app.use("/*", serveStatic(serveStaticOptions));
+  devtools(app, { assetsPath: "/frog", serveStatic, serveStaticOptions });
 } else {
   devtools(app, { serveStatic });
 }
