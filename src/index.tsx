@@ -50,6 +50,7 @@ app.frame("/yeeter/:yeeterid", async (c) => {
     query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
   });
 
+  console.log("yeeterid", yeeterid);
   console.log("yeetData", yeetData);
 
   if (!yeetData.data.yeeter) {
