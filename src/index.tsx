@@ -50,6 +50,8 @@ app.frame("/yeeter/:yeeterid", async (c) => {
     query: `{yeeter(id: "${yeeterid.toLowerCase()}") {id endTime startTime minTribute multiplier goal balance dao { id }}}`,
   });
 
+  console.log("yeetData", yeetData);
+
   if (!yeetData.data.yeeter) {
     return c.res({
       image: <ErrorView message="Yeeter Not Found" />,
