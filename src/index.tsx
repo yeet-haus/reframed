@@ -42,6 +42,8 @@ app.frame("/yeeter/:yeeterid", async (c) => {
 
   const graphKey = c.env?.GRAPH_KEY || process.env.GRAPH_KEY;
 
+  console.log("graphKey", graphKey);
+
   if (!graphKey) {
     throw new Error("GRAPH_KEY Missing");
   }
@@ -74,6 +76,12 @@ app.frame("/yeeter/:yeeterid", async (c) => {
 
   const daoid = yeetData.data.yeeter.dao.id;
 
+  const daoRes = await postData(DH_GRAPH_ENDPOINT(graphKey), {
+    query: `{dao(id: "${daoid.toLowerCase()}") { id name }}`,
+  });
+
+  console.log("daoRes", daoRes);
+
   const metaRes = await postData(DH_GRAPH_ENDPOINT(graphKey), {
     query: `{records(where: { dao: "${daoid.toLowerCase()}", table: "yeetDetails" }, orderBy: createdAt, orderDirection: desc) {id content dao { name } }}`,
   });
@@ -83,12 +91,14 @@ app.frame("/yeeter/:yeeterid", async (c) => {
   //     image: <ErrorView message="Missing Yeeter Mission" />,
   //   });
   // }
+
+  console.log("metaRes", metaRes);
   const meta =
-    metaRes.data.records[0] &&
+    metaRes?.data?.records[0]?.length > 0 &&
     addParsedContent(metaRes.data.records[0].content);
 
-  const name = metaRes.data.records[0].dao.name;
-  const mission = meta?.missionStatement || "YEET";
+  const name = metaRes?.data?.records[0]?.dao?.name || daoRes?.data?.dao?.name;
+  const mission = (meta && meta.missionStatement) || "YEET AWAY";
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime =
     formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime) || "No End";
