@@ -55,7 +55,7 @@ app.frame("/yeeter/:yeeterid", async (c) => {
   console.log("yeeterid", yeeterid);
   console.log("yeetData", yeetData);
 
-  if (!yeetData.data.yeeter) {
+  if (!yeetData?.data.yeeter) {
     return c.res({
       image: <ErrorView message="Yeeter Not Found" />,
     });
@@ -78,16 +78,17 @@ app.frame("/yeeter/:yeeterid", async (c) => {
     query: `{records(where: { dao: "${daoid.toLowerCase()}", table: "yeetDetails" }, orderBy: createdAt, orderDirection: desc) {id content dao { name } }}`,
   });
 
-  const meta = addParsedContent(metaRes.data.records[0].content);
-
-  if (!metaRes.data.records[0]) {
-    return c.res({
-      image: <ErrorView message="Missing Yeeter Mission" />,
-    });
-  }
+  // if (!metaRes.data.records[0]) {
+  //   return c.res({
+  //     image: <ErrorView message="Missing Yeeter Mission" />,
+  //   });
+  // }
+  const meta =
+    metaRes.data.records[0] &&
+    addParsedContent(metaRes.data.records[0].content);
 
   const name = metaRes.data.records[0].dao.name;
-  const mission = meta?.missionStatement || "No Mission";
+  const mission = meta?.missionStatement || "YEET";
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime =
     formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime) || "No End";
