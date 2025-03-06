@@ -94,11 +94,11 @@ app.frame("/yeeter/:yeeterid", async (c) => {
 
   console.log("metaRes", metaRes);
   const meta =
-    metaRes?.data?.records[0]?.length > 0 &&
+    metaRes?.data?.records[0] &&
     addParsedContent(metaRes.data.records[0].content);
 
   const name = metaRes?.data?.records[0]?.dao?.name || daoRes?.data?.dao?.name;
-  const mission = (meta && meta.missionStatement) || "YEET AWAY";
+  const mission = meta?.missionStatement || "YEET AWAY";
   const balance = formatEther(yeetData.data.yeeter.balance);
   const endTime =
     formatShortDateTimeFromSeconds(yeetData.data.yeeter.endTime) || "No End";
