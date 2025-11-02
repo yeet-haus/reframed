@@ -10,10 +10,10 @@ dependencies:
     version: 3.6.0
   frog:
     specifier: ^0.13.1
-    version: 0.13.1(hono@4.6.3)
+    version: 0.13.1(hono@4.10.3)
   hono:
-    specifier: ^4.4.12
-    version: 4.6.3
+    specifier: ^4.10.3
+    version: 4.10.3
   viem:
     specifier: ^2.17.3
     version: 2.21.16
@@ -535,22 +535,22 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@hono/node-server@1.13.1(hono@4.6.3):
+  /@hono/node-server@1.13.1(hono@4.10.3):
     resolution: {integrity: sha512-TSxE6cT5RHnawbjnveexVN7H2Dpn1YaLxQrCOLCUwD+hFbqbFsnJBgdWcYtASqtWVjA+Qgi8uqFug39GsHjo5A==}
     engines: {node: '>=18.14.1'}
     peerDependencies:
       hono: ^4
     dependencies:
-      hono: 4.6.3
+      hono: 4.10.3
     dev: false
 
-  /@hono/valibot-validator@0.3.1(hono@4.6.3)(valibot@0.31.1):
+  /@hono/valibot-validator@0.3.1(hono@4.10.3)(valibot@0.31.1):
     resolution: {integrity: sha512-nsHzczDBZcipQQnLcz/Sdfo+qiTDHH+gC6uj6DeyHH2dEIVYtqsKRlrVEJUYx/pKnTd9akQfsDRhvXo8pVuGfQ==}
     peerDependencies:
       hono: '>=3.9.0'
       valibot: '>=0.31.0 <1'
     dependencies:
-      hono: 4.6.3
+      hono: 4.10.3
       valibot: 0.31.1
     dev: false
 
@@ -1073,7 +1073,7 @@ packages:
     dependencies:
       to-regex-range: 5.0.1
 
-  /frog@0.13.1(hono@4.6.3):
+  /frog@0.13.1(hono@4.10.3):
     resolution: {integrity: sha512-sTWbn/0+JV1e/CghpvMZySf90R8Fznk90YardR93A9A+OGr+UsFO0G4lUGIy9dw+M3N0bBwvq07NObsqwPOpwg==}
     hasBin: true
     peerDependencies:
@@ -1084,8 +1084,8 @@ packages:
         optional: true
     dependencies:
       '@bufbuild/protobuf': 1.10.0
-      '@hono/node-server': 1.13.1(hono@4.6.3)
-      '@hono/valibot-validator': 0.3.1(hono@4.6.3)(valibot@0.31.1)
+      '@hono/node-server': 1.13.1(hono@4.10.3)
+      '@hono/valibot-validator': 0.3.1(hono@4.10.3)(valibot@0.31.1)
       '@noble/curves': 1.6.0
       '@noble/hashes': 1.5.0
       cac: 6.7.14
@@ -1094,8 +1094,8 @@ packages:
       dom-parser: 1.1.5
       fast-glob: 3.3.2
       fs-extra: 11.2.0
-      hono: 4.6.3
-      hono-og: 0.0.27(hono@4.6.3)
+      hono: 4.10.3
+      hono-og: 0.0.27(hono@4.10.3)
       jose: 5.9.3
       lz-string: 1.5.0
       path-browserify: 1.0.1
@@ -1169,18 +1169,18 @@ packages:
     engines: {node: '>=6'}
     dev: false
 
-  /hono-og@0.0.27(hono@4.6.3):
+  /hono-og@0.0.27(hono@4.10.3):
     resolution: {integrity: sha512-FtsUmDCG7xKXD8InxzHcdzX5IIe9MrDPFHih0CUd6Hog0NcDV6tksc1cZ1sAAuftSTedmC4LV6Oi1uK6VXvZgQ==}
     peerDependencies:
       hono: '>=3'
     dependencies:
       '@vercel/og': 0.6.3
-      hono: 4.6.3
+      hono: 4.10.3
       workers-og: 0.0.25
     dev: false
 
-  /hono@4.6.3:
-    resolution: {integrity: sha512-0LeEuBNFeSHGqZ9sNVVgZjB1V5fmhkBSB0hZrpqStSMLOWgfLy0dHOvrjbJh0H2khsjet6rbHfWTHY0kpYThKQ==}
+  /hono@4.10.3:
+    resolution: {integrity: sha512-2LOYWUbnhdxdL8MNbNg9XZig6k+cZXm5IjHn2Aviv7honhBMOHb+jxrKIeJRZJRmn+htUCKhaicxwXuUDlchRA==}
     engines: {node: '>=16.9.0'}
     dev: false
 
@@ -1320,8 +1320,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: true
 
-  /ohash@1.1.4:
-    resolution: {integrity: sha512-FlDryZAahJmEF3VR3w1KogSEdWX3WhA5GPakFx4J81kEAiHyLMpdLLElS8n8dfNadMgAne/MywcvmogzscVt4g==}
+  /ohash@1.1.6:
+    resolution: {integrity: sha512-TBu7PtV8YkAZn0tSxobKY2n2aAQva936lhRrj6957aDaCf9IEtqsKbgMzXE/F/sjqYOwmrukeORHNLe5glk7Cg==}
     dev: true
 
   /pako@0.2.9:
@@ -1549,8 +1549,8 @@ packages:
     resolution: {integrity: sha512-gLXCKdN1/j47AiHiOkJN69hJmcbGTHI0ImLmbYLHykhgeN0jVGola9yVjFgzCUklsZQMW55o+dW7IXv3RCXDzA==}
     dev: true
 
-  /ufo@1.5.4:
-    resolution: {integrity: sha512-UsUk3byDzKd04EyoZ7U4DOlxQaD14JUKQl6/P7wiX4FNvUfm3XL246n9W5AmqwW5RSFJ27NAuM0iLscAOYUiGQ==}
+  /ufo@1.6.1:
+    resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
     dev: true
 
   /undici-types@6.19.8:
@@ -1568,9 +1568,9 @@ packages:
     resolution: {integrity: sha512-XjsgUTrTHR7iw+k/SRTNjh6EQgwpC9voygnoCJo5kh4hKqsSDHUW84MhL9EsHTNfLctvVBHaSw8e2k3R2fKXsQ==}
     dependencies:
       defu: 6.1.4
-      ohash: 1.1.4
+      ohash: 1.1.6
       pathe: 1.1.2
-      ufo: 1.5.4
+      ufo: 1.6.1
     dev: true
 
   /unicode-trie@2.0.0:
